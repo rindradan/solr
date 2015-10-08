@@ -1,11 +1,15 @@
 package com.solr.service.search;
 
+import java.util.List;
+
 public class SearchContext
 {
     private String q;
+    private List<String> filters;
+    private List<String> fields;
     private String sort;
     private int start;
-    private int stop;
+    private int rows;
 
     public String getQ()
     {
@@ -37,13 +41,33 @@ public class SearchContext
         this.start = start;
     }
 
-    public int getStop()
+    public int getRows()
     {
-        return stop;
+        return rows;
     }
 
-    public void setStop(int stop)
+    public void setRows(int rows)
     {
-        this.stop = stop;
+        this.rows = rows;
+    }
+
+    public List<String> getFilters()
+    {
+        return filters;
+    }
+
+    public void setFilters(List<String> filters)
+    {
+        this.filters = filters;
+    }
+
+    public List<String> getFields()
+    {
+        return fields;
+    }
+
+    public void setFields(List<String> fields)
+    {
+        this.fields = fields;
     }
 }

@@ -3,8 +3,11 @@ package com.solr.service.index.impl;
 import com.solr.model.Book;
 import com.solr.service.index.IndexService;
 import com.solr.service.search.SearchContext;
+import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 
 import java.io.IOException;
@@ -43,8 +46,33 @@ public class IndexServiceImpl implements IndexService
 
     }
 
-    public List<Book> searchElement(SearchContext sc)
+    public SolrDocumentList searchElement(SearchContext sc) throws SolrServerException
     {
-        return null;
+        SolrQuery query = new SolrQuery();
+        query.setQuery(sc.getQ());
+
+        for (String filter : sc.getFilters())
+        {
+            query.addFilterQuery(filter);
+        }
+
+        for (String field : sc.getFields())
+        {
+            query.addField(field);
+        }
+
+        query.setStart(sc.getStart());
+        query.setRows(sc.getRows());
+
+        QueryResponse queryResponse = solrServer.query(query);
+
+        return queryResponse.getResults();
     }
+
+    public void dropIndex() throws IOException, SolrServerException
+    {
+        solrServer.deleteByQuery("*:*");
+        solrServer.commit();
+    }
+
 }
