@@ -5,4 +5,6 @@
 
        <bean id="indexService" class="com.solr.service.index.impl.IndexServiceImpl"></bean>
 
+       <bean id="searchService" class="com.solr.service.search.impl.SolrSearchServiceImpl"></bean>
+
 </beans>

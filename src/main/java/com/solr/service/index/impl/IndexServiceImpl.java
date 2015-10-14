@@ -32,7 +32,8 @@ public class IndexServiceImpl implements IndexService
             document.addField("id", book.getId());
             document.addField("title", book.getTitle());
             document.addField("author", book.getAuthor());
-            document.addField("publishedDate", book.getPublishedDate());
+            document.addField("publishedDate_dt", book.getPublishedDate());
+            document.addField("category", book.getCategory());
 
             solrServer.add(document);
 
@@ -44,29 +45,6 @@ public class IndexServiceImpl implements IndexService
 
         solrServer.commit();
 
-    }
-
-    public SolrDocumentList searchElement(SearchContext sc) throws SolrServerException
-    {
-        SolrQuery query = new SolrQuery();
-        query.setQuery(sc.getQ());
-
-        for (String filter : sc.getFilters())
-        {
-            query.addFilterQuery(filter);
-        }
-
-        for (String field : sc.getFields())
-        {
-            query.addField(field);
-        }
-
-        query.setStart(sc.getStart());
-        query.setRows(sc.getRows());
-
-        QueryResponse queryResponse = solrServer.query(query);
-
-        return queryResponse.getResults();
     }
 
     public void dropIndex() throws IOException, SolrServerException

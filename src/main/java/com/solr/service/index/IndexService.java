@@ -11,6 +11,5 @@ import java.util.List;
 public interface IndexService
 {
     void indexElements(List<Book> bookList) throws IOException, SolrServerException;
-    SolrDocumentList searchElement(SearchContext sc) throws SolrServerException;
     void dropIndex() throws IOException, SolrServerException;
 }

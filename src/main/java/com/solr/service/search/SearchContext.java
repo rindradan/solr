@@ -1,15 +1,17 @@
 package com.solr.service.search;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class SearchContext
 {
     private String q;
-    private List<String> filters;
-    private List<String> fields;
+    private List<String> filters = new LinkedList<String>();
+    private List<String> fields = new LinkedList<String>();
     private String sort;
     private int start;
     private int rows;
+    private boolean facet = false;
 
     public String getQ()
     {
@@ -69,5 +71,15 @@ public class SearchContext
     public void setFields(List<String> fields)
     {
         this.fields = fields;
+    }
+
+    public boolean isFacet()
+    {
+        return facet;
+    }
+
+    public void setFacet(boolean facet)
+    {
+        this.facet = facet;
     }
 }

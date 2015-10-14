@@ -8,6 +8,7 @@ public class Book
     private String title;
     private String author;
     private Date publishedDate;
+    private String category;
 
     public String getId()
     {
@@ -47,5 +48,15 @@ public class Book
     public void setPublishedDate(Date publishedDate)
     {
         this.publishedDate = publishedDate;
+    }
+
+    public String getCategory()
+    {
+        return category;
+    }
+
+    public void setCategory(String category)
+    {
+        this.category = category;
     }
 }
