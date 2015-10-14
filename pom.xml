@@ -6,7 +6,7 @@
 
     <groupId>com.solr</groupId>
     <artifactId>solr</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
 
     <name>solr-in-action</name>
 
@@ -98,5 +98,14 @@
         </dependency>
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>solr-search</id>
+            <properties>
+                <build.profile.id>rindra.solrsearch</build.profile.id>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

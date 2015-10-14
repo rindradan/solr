@@ -44,7 +44,7 @@ public class SolrIndexServiceTest extends BaseTest
     {
         SearchContext sc = new SearchContext();
         sc.setQ("*:*");
-        sc.getFilters().add("category:roman");
+        sc.getFilters().add("category:adventure");
         sc.setRows(10);
 
         for (SolrDocument doc : searchService.searchElement(sc))
